@@ -1,0 +1,79 @@
+.line {
+    display: flex;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.dropdown-spaced-menu {
+  display: flex;
+  // width: 200px;
+  justify-content: space-between;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.filter-drawer {
+    // display: flex;
+    // flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.filter-drawer > mat-drawer {
+    width: 300px;
+    // width: 15%;
+}
+
+.filter-drawer > .mat-drawer-side {
+    border-right: 0;
+}
+
+.filter-drawer > .filters {
+    margin: 10px;
+}
+
+.filter-drawer > .date {
+    // width: 280px;
+}
+
+.navigation-buttons {
+    // height: 100%;
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    padding: 5px;
+}
+
+.navigation-buttons > h2 {
+    margin: 0;
+}
+
+// .drawer-content {
+//     display: flex;
+//     flex-direction: column;
+//     // width: 85%;
+//     width: calc(100% - 300px);
+//     height: 100%;
+// }
+
+.calendar-view {
+    flex: 1 1 auto;
+}
+
+.push-to-end-spacer {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.spacing {
+    width: 10px;
+}

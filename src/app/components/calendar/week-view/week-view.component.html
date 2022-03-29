@@ -1,0 +1,45 @@
+<div class="column">
+    <div class="line">
+        <div class="column time-of-day">
+            <div class="time-column">GMT+00 </div>
+            <div class="extend-to-end"></div>
+        </div>
+
+        <div class="column days-of-week">
+            <div class="line weeks">
+                <div *ngFor="let weekday of calendarWeek" class="column week">
+                    <div class="week-name">{{ weekday.date.toISO() | date: 'EEE' | uppercase }}</div>
+                    <button
+                        mat-button
+                        [ngClass]="{'day-number-past': weekday.isPastDate, 'day-number': (!weekday.isToday && !weekday.isPastDate)}"
+                        *ngIf="weekday.isPastDate || (!weekday.isToday && !weekday.isPastDate)"
+                        (click)="changeDate(weekday.date)"
+                    >{{ weekday.date.toISO() | date: 'dd' | titlecase }}</button>
+                    <button
+                        mat-fab
+                        color="primary"
+                        class="day-number-today"
+                        *ngIf="weekday.isToday"
+                        (click)="changeDate(weekday.date)"
+                    >{{ weekday.date.toISO() | date: 'dd' | titlecase }}</button>
+                </div>
+            </div>
+            <div class="line all-day-events">
+                <div *ngFor="let weekday of calendarWeek.slice(0, 7)" class="column week">
+                    all-day events
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="week-column">
+            <div class="extend-to-end"></div>
+            <div class="weeks"></div>
+        </div>
+        <div class="time-column">
+            <div class="extend-to-end"></div>
+            <div class="all-day"></div>
+        </div>
+    </div>
+</div>

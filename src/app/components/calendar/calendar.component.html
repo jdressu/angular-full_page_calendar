@@ -1,0 +1,49 @@
+<div class="calendar">
+    <div class="navigation-buttons">
+      <button mat-icon-button (click)="filterDrawer.toggle()"><mat-icon>menu</mat-icon></button>
+  
+      <h2>{{ 'Calendar' }}</h2>
+  
+      <div class="spacing"></div>
+  
+      <button mat-stroked-button (click)="setCurrentMonth()">Today</button>
+      <button mat-icon-button (click)="decreaseMonth()"><mat-icon>chevron_left</mat-icon></button>
+      <button mat-icon-button (click)="increaseMonth()"><mat-icon>chevron_right</mat-icon></button>
+      <h2>{{ dateToDisplayMonth.toISO() | date: 'MMMM YYYY' | titlecase }}</h2>
+  
+      <div class="push-to-end-spacer"></div>
+  
+      <button mat-stroked-button [matMenuTriggerFor]="menu">{{ selectViewViewValue }}<mat-icon>arrow_drop_down</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item class="dropdown-spaced-menu" *ngFor="let view of views" (click)="selectViewValue(view.value)">
+          <span>{{ view.viewValue }}</span><span>{{ getViewValue(view.value) | uppercase }}</span>
+        </button>
+      </mat-menu>
+    </div>
+  
+    <mat-drawer-container class="filter-drawer" hasBackdrop="false">
+      <mat-drawer #filterDrawer mode="side" [(opened)]="filterDrawerOpened" disableClose="true">
+  
+        <div class="column filters">
+          <app-date-selection [(selected)]="selectedDate" customHeader="true" weekPreview="true"></app-date-selection>
+          <ng-content></ng-content>
+          <!-- <p>[calendar] Selected date: {{ selectedDate | json }}</p> -->
+        </div>
+  
+      </mat-drawer>
+  
+      <mat-drawer-content class="drawer-content">
+        
+        <ng-container [ngSwitch]="selectedViewValue">
+          <app-day-view class="column calendar-view" *ngSwitchCase="'d'" [calendar]="calendar" [(selectedDay)]="selectedDate"></app-day-view>
+          <app-week-view class="column calendar-view" *ngSwitchCase="'w'" [calendar]="calendar" [(selectedDay)]="selectedDate"></app-week-view>
+          <app-month-view class="column calendar-view" *ngSwitchCase="'m'" [calendar]="calendar" [(selectedDay)]="selectedDate"></app-month-view>
+        </ng-container>
+      
+      </mat-drawer-content>
+  
+    </mat-drawer-container>
+  </div>
+  
+  <!-- <div><pre>{{ calendar | json }}</pre></div> -->
+  

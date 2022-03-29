@@ -1,0 +1,86 @@
+.line {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.weeks {
+    flex: 1 1 0%;
+}
+
+.week {
+    // display: flex;
+    width: 100%;
+    text-align: center;
+    font-size: smaller;
+}
+
+.day {
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    width: 14vw;
+    // the grid will always show 6 weeks
+    // height: calc(calc(14vh - calc(6 * 1px)) - 1px);
+    height: calc(calc(calc(calc(100vh - 68px) - 50px) - 20px) / 6);//calc(14.28571vh - 20px);
+    // flex: 1 1 auto;
+}
+
+.items-wrapper {
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
+// .blue-date {
+//     color: rgb(16, 110, 190);
+// }
+
+// .day-number, .day-number-today {
+//     width: 35px;
+//     height: 35px;
+// }
+
+.small-icon-button {
+    width: 30px;
+    height: 30px;
+}
+
+.small-icon-button > .mat-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    // vertical-align: middle;
+//     // font-size: 22px;
+//     font-weight: 400;
+    line-height: 0;
+}
+
+.small-icon-button {
+    &:hover:not(.mat-button-disabled) .mat-button-focus-overlay {
+        opacity: 0.08;
+    }
+}
+
+.day-number-past > .mat-button-wrapper {
+    opacity: 0.5;
+}
+
+.day-number-today > .mat-button-wrapper {
+    font-weight: normal;
+}

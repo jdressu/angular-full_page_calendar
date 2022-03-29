@@ -1,0 +1,38 @@
+<div class="line weeks">
+    <!-- <div>{{ innerHeight }}/{{ contentSize }}/{{ topOffset }}/{{ weekHeight }}</div> -->
+    <div *ngFor="let weekday of calendar.slice(0, 7)" class="week">
+        {{ weekday.date.toISO() | date: 'EEE' | uppercase }}
+    </div>
+</div>
+
+<div class="column" #getTop>
+    <div class="line" *ngFor="let week of calendar | chunkCalendarDays: 7; let i = index">
+        <div [style.height.px]="weekHeight" class="column day" *ngFor="let day of week; let j = index">
+            <div class="week">
+                <!-- <strong *ngIf="day.isToday || (i === 0 && j === 0) || (day.date.day === 1)">{{ day.date | date: 'MMM' | titlecase }}&nbsp;</strong> -->
+                <button
+                    mat-icon-button
+                    [ngClass]="{ 'small-icon-button': true, 'day-number-past': day.isPastDate, 'day-number': (!day.isToday && !day.isPastDate)}"
+                    *ngIf="day.isPastDate || (!day.isToday && !day.isPastDate)"
+                    (click)="changeDate(day.date)"
+                >
+                    <span *ngIf="day.date.day === 1">{{ day.date | date: 'MMM' | titlecase }}&nbsp;</span>
+                    <span>{{ day.date.day }}</span>
+                </button>
+                <button
+                    mat-fab
+                    color="primary"
+                    class="small-icon-button day-number-today"
+                    *ngIf="day.isToday"
+                    (click)="changeDate(day.date)"
+                >
+                    <span *ngIf="day.date.day === 1">{{ day.date | date: 'MMM' | titlecase }}&nbsp;</span>
+                    <span>{{ day.date.day }}</span>
+                </button>
+            </div>
+            <div class="column items-wrapper">
+                <div *ngFor="let event of day.events">{{ event.title }}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,4 @@
+<mat-calendar *ngIf="!weekPreview" class="date" [selected]="_selectedRange" (selectedChange)="selectedChanged($event)" [headerComponent]="selectedDateFilterHeader"></mat-calendar>
+<app-date-selection-week-preview *ngIf="weekPreview" [selected]="selected" (selectedChange)="selectedChanged($event)" [headerComponent]="selectedDateFilterHeader"></app-date-selection-week-preview>
+<!-- <p>[date-selection] Selected date: {{ selected | json }}</p> -->
+<!-- <p>[date-selection] Selected range: {{ _selectedRange | json }}</p> -->
